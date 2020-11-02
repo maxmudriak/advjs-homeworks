@@ -14,27 +14,18 @@
        *  - возвращает новый массив, который содержит только те элементы arr,  для которых fn возвращает true.
        */
 
-      const arr = [11, 66, 33, 44, 22, 55, 2];
-
-      // Краще тут створити newArr? Чи кожен раз створювати в середині функції? Бо сам арей нам не треба а треба тіки результат функції у виді арея, а як запихнути інфу в арей без арея я хз)
+      const arr = [11, 66, 33, 44, 22, 55, 2];      
       let newArr = [];
 
       function filter(arr, fn) {
-         for(let elem of arr) {
-           if(fn(elem) === true) {
-            newArr.push(elem);
-           }
-        }
 
-        return newArr;
+        arr.forEach(item => {fn(item) ? newArr.push(item) : null})
+
+        return newArr; 
       }
 
       // Проверка - вернуть массив с элементами значение которых больше 50
-      const filteredArr = filter(arr, function (item) {
-        if (item > 50) {
-          return true;   
-        } else return false;
-      });
+      const filteredArr = filter(arr, (item) => item > 50);
 
       console.log(filteredArr); //   [66, 55]]
     </script>
