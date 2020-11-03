@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html>
+ <head>
+   <title>async</title>
+ </head>
+ <body>
+
+ 	<table id="table">
+        <tr>
+    		<th>Posts</th>
+  		</tr>
+ 	</table>
+
+  <script type="text/javascript">
+
+  	const table = document.getElementById('table');
+
+  		for(let i = 1; i <= 10; i++) {
+  		fetch('https://jsonplaceholder.typicode.com/posts/' + i)
+  		.then(response => response.json())
+  		.then(json => table.innerHTML += 
+  			`<td>
+  				Title: ${json.title} <br>
+  				Body: ${json.body} <br>
+  				<a href="#" class="link">User ID: ${json.userId}</a>
+  				<hr>
+  			</td>`
+  			);
+  		}
+
+  	table.addEventListener('click', function(e) {
+		if (e.target.className == "link") {
+			fetch('https://jsonplaceholder.typicode.com/users/1')
+  				.then(response => response.json())
+  				.then(json => e.path[1].innerHTML +=
+  					`<div>
+  						Name : ${json.name} <br>
+  						Username : ${json.username} <br>
+  						Email : ${json.email} <br>
+  						<hr>
+  					</div>`	
+  				 )
+		}
+	});
+  	
+  </script>
+ </body> 
+</html>
